@@ -1,12 +1,13 @@
 
 #!/usr/bin/python
 import os
-#import fnmatch
 import sys
 import signal
 import subprocess
 from myqueue import Queue
 
+# 2017 Brent Johnson
+# https://github.com/energyvault462/par2it
 
 class ParWrapper:
     def __init__(self):
