@@ -4,7 +4,9 @@ import os
 #import fnmatch
 import sys
 import signal
+import subprocess
 from myqueue import Queue
+
 
 class ParWrapper:
     def __init__(self):
@@ -14,26 +16,31 @@ class ParWrapper:
         for root, dirs, files in os.walk(baseFolder):
             path = root.split(os.sep)
             for file in files:
-                self.q.enqueue(self.FullPath(path, file))
+                filestr = root
+                filestr += "/"
+                filestr += file
+                self.q.enqueue(filestr)
             #self.q.printqueue()
-            print "-" *10
-            self.CallPar()
+            #print "- " *10
+            #self.q.printqueue()
+            self.CallPar(root)
+            #print "-" * 10
+            #self.q.printqueue()
+
+    def CallPar(self, folder):
+        targetfiles = ""
+        folder.replace(" ", "\ ")
+        if self.q.size() > 0:
+            while (self.q.size() > 0):
+                #print self.q.dequeue()
+                targetfiles += "\"" + self.q.dequeue() + "\" "
+            targetfiles.replace(" ", "-")
+            parcommand = "par2 create "
+            parcommand += "\"" + folder + "/par2it.par\" " + targetfiles
             print "-" * 10
-            #self.q.printqueue()
-
-    def CallPar(self):
-        while (self.q.size() > 0):
-            print self.q.dequeue()
-
-    def FullPath(self, path, file):
-        newpath = ""
-        if not self.q.isEmpty():
-            for item in path:
-                newpath += item
-                newpath += "/"
-            newpath += file
-            #print(newpath)
-            return newpath
+            print "callpar: %s" % parcommand
+            subprocess.call(parcommand, shell=True)
+            print "-" * 10
 
 def main(argv):
     p = ParWrapper()
