@@ -46,11 +46,9 @@ class ParWrapper:
     def DeleteParFiles(self, path):
         parfiles = self.GetParList(path)
         for parfile in parfiles:
-            fileToDelete = ""
-            fileToDelete += path + "/" + parfile
             try:
-                print("Delete: %s") % fileToDelete
-                os.remove(fileToDelete.encode('string-escape'))
+                print("Delete: %s") % parfile
+                os.remove(parfile.encode('string-escape'))
             except OSError:
                 pass
 
