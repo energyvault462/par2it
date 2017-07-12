@@ -5,4 +5,4 @@ python:
 cache: pip
 
 script:
-    - py.test --cov-report term-missing --cov app -v
+    - py.test 
