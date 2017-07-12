@@ -8,12 +8,12 @@ import subprocess
 
 # 2017 Brent Johnson
 # https://github.com/energyvault462/par2it
+# TODO: Travis CI tests
 
 class ParWrapper:
     def TraverseFolder(self, baseFolder = "."):
         for root, dirs, files in os.walk(baseFolder):
             if self.VerifyPars(root) > 0:
-                print "***> Run CreatePar: %s" % root
                 self.CreatePars(root)
             else:
                 print "***> Pars already exist for %s" % root
@@ -32,7 +32,6 @@ class ParWrapper:
         if len(parfiles) == 9:
             for parfile in parfiles:
                 filesToCheck += "\"" + parfile + "\" "
-            #print "files to check: %s" % filesToCheck
             parcommand = "par2 v "
             parcommand += filesToCheck
             rc = subprocess.call(parcommand, shell=True)
@@ -40,7 +39,6 @@ class ParWrapper:
                 exitcode = rc
         else:
             exitcode = 999
-
         return exitcode
 
     def DeleteParFiles(self, path):
