@@ -6,4 +6,4 @@ before_install:
     - pip install pytest pytest-cov
 
 script:
-    - test_par2it.py
+    - py.test --cov-report term-missing --cov app -v
