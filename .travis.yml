@@ -6,4 +6,4 @@ before_install:
     - pip install pytest pytest-cov
 
 script:
-    - tests/test_par2it.py
+    - test_par2it.py
