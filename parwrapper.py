@@ -35,7 +35,7 @@ class ParWrapper:
         parfiles = self.GetParList(path)
         for parfile in parfiles:
             try:
-                os.remove(parfile.encode('string-escape'))
+                os.remove(parfile.encode('unicode_escape'))
             except OSError:
                 pass
 
