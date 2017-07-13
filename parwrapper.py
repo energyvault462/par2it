@@ -7,8 +7,6 @@ class ParWrapper:
         for root, dirs, files in os.walk(baseFolder):
             if self.VerifyPars(root) > 0:
                 self.CreatePars(root)
-            else:
-                print "***> Pars already exist for %s" % root
 
     def GetParList(self, path):
         import glob
