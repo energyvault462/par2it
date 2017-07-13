@@ -3,6 +3,8 @@ python:
   - "2.7"
 
 cache: pip
-
+before_install:
+  - pip install pytest-cov
+  
 script:
-    - py.test 
+    - py.test --cov-report term-missing --cov app -v
