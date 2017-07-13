@@ -9,7 +9,7 @@ def createtestfiles():
         with io.open("./tests/" + file, 'w', encoding='utf-8') as f:
             f.write(u'test')
 
-@pytest.fixture()
+@pytest.yield_fixture()
 def parwrapper():
     createtestfiles()
     pw = ParWrapper()

@@ -5,6 +5,6 @@ python:
 cache: pip
 before_install:
   - pip install pytest-cov
-  
+
 script:
     - py.test --cov-report term-missing --cov app -v
