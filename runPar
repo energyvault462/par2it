@@ -1,5 +1,17 @@
 #! /bin/bash
 
+curl -s \
+  --form-string "token=${PUSHOVER_APP_TKN}" \
+  --form-string "user=${PUSHOVER_USER_TKN}" \
+  --form-string "message=par: creating par files" \
+  https://api.pushover.net/1/messages.json
+
 date > /logs/par2it-running.log
 python par2it.py /data > /logs/par2it-running.log
 mv /logs/par2it-running.log /logs/par2it-done.log
+
+curl -s \
+  --form-string "token=${PUSHOVER_APP_TKN}" \
+  --form-string "user=${PUSHOVER_USER_TKN}" \
+  --form-string "message=par: par finished" \
+  https://api.pushover.net/1/messages.json
