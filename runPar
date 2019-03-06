@@ -1,0 +1,5 @@
+#! /bin/bash
+
+date > /logs/par2it-running.log
+python par2it.py /data > /logs/par2it-running.log
+mv /logs/par2it-running.log /logs/par2it-done.log
